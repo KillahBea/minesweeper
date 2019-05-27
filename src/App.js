@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
-import { request } from 'http'
 
 class App extends Component {
   state = {
-    board: []
+    board: [],
+    gameId: null
   }
   componentDidMount() {
     const data = { number: 0 }
@@ -22,12 +22,37 @@ class App extends Component {
       .then(game => {
         console.log(game)
         this.setState({
-          board: game.board
+          board: game.board,
+          gameId: game.id
         })
-        console.log(game.board)
       })
   }
 
+  clickBox = (row, column) => {
+    console.log('clicked', row, column, this.state.gameId)
+    fetch(`https://minesweeper-api.herokuapp.com/games/${this.state.gameId}/check`, {
+      method: 'POST',
+      body: JSON.stringify({
+        row: row,
+        column: column
+      }),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+      .then(response => {
+        return response.json()
+      })
+      .then(updatedBoard => {
+        console.log('updatedGame')
+        this.setState({
+          board: updatedBoard.board
+        })
+      })
+  }
+  flagBox = (ros, column) => {
+    console.log('flagged', row, column)
+  }
   render() {
     return (
       <main>
@@ -40,7 +65,12 @@ class App extends Component {
                   <tr key={i}>
                     {row.map((column, j) => {
                       return (
-                        <td key={j} className="tdBox">
+                        <td
+                          key={j}
+                          className="tdBox"
+                          onClick={() => this.clickBox(i, j)}
+                          onContextMenu={() => this.flagBox(i, j)}
+                        >
                           {this.state.board[i][j]}
                         </td>
                       )
