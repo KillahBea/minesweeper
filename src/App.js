@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import Square from './components/Square'
 
 class App extends Component {
   state = {
@@ -20,7 +21,6 @@ class App extends Component {
         return response.json()
       })
       .then(game => {
-        console.log(game)
         this.setState({
           board: game.board,
           gameId: game.id
@@ -29,12 +29,11 @@ class App extends Component {
   }
 
   clickBox = (row, column) => {
-    console.log('clicked', row, column, this.state.gameId)
     fetch(`https://minesweeper-api.herokuapp.com/games/${this.state.gameId}/check`, {
       method: 'POST',
       body: JSON.stringify({
         row: row,
-        column: column
+        col: column
       }),
       headers: {
         'Content-Type': 'application/json'
@@ -44,35 +43,53 @@ class App extends Component {
         return response.json()
       })
       .then(updatedBoard => {
-        console.log('updatedGame')
         this.setState({
           board: updatedBoard.board
         })
       })
   }
-  flagBox = (ros, column) => {
-    console.log('flagged', row, column)
+
+  flagBox = (row, column) => {
+    fetch(`https://minesweeper-api.herokuapp.com/games/${this.state.gameId}/flag`, {
+      method: 'POST',
+      body: JSON.stringify({
+        row: row,
+        col: column
+      }),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+      .then(response => {
+        return response.json()
+      })
+      .then(updatedBoard => {
+        console.log('updatedGame', updatedBoard.board)
+        this.setState({
+          board: updatedBoard.board
+        })
+      })
   }
   render() {
     return (
       <main>
-        <h1 className="mainTitle">Crazy Mine</h1>
+        <h1 className="mainTitle">Plants vs. Weeds</h1>
         <div>
           <table>
             <tbody>
               {this.state.board.map((row, i) => {
                 return (
                   <tr key={i}>
-                    {row.map((column, j) => {
+                    {row.map((value, j) => {
                       return (
-                        <td
+                        <Square
                           key={j}
-                          className="tdBox"
-                          onClick={() => this.clickBox(i, j)}
-                          onContextMenu={() => this.flagBox(i, j)}
-                        >
-                          {this.state.board[i][j]}
-                        </td>
+                          value={value}
+                          handleLeftClick={this.clickBox}
+                          handleRightClick={this.flagBox}
+                          row={i}
+                          column={j}
+                        />
                       )
                     })}
                   </tr>

@@ -14,16 +14,30 @@ body {
   min-height: 100%;
 }
 
+table {
+  border-collapse: collapse;
+}
+
 .tdBox {
-  border: solid 0.5rem grey;
-  padding: 2rem;
+  border: solid 0.5rem rgba(230, 211, 70, 0.639);
+  height: 100px;
+  width: 100px;
+  text-align: center;
+  background: rgb(14, 20, 90);
+  color: white;
 }
 
 .box {
-  border: solid grey 2rem;
+  /* border: solid grey 2rem; */
 }
 
 .mainTitle {
   text-align: center;
   font-size: 4rem;
+}
+
+.sunny {
+  height: 100px;
+}
+.dandy {
 }
