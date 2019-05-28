@@ -73,7 +73,8 @@ class App extends Component {
   render() {
     return (
       <main>
-        <h1 className="mainTitle">Plants vs. Weeds</h1>
+        <h1 className="header">Plants vs. Weeds</h1>
+        <img src="../assets/grass.png" alt="green grass" />
         <div>
           <table>
             <tbody>

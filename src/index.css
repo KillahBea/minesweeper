@@ -12,6 +12,7 @@ body {
   justify-content: center;
   margin: 0;
   min-height: 100%;
+  background-image: url(./assets/soil.jpeg);
 }
 
 table {
@@ -19,11 +20,11 @@ table {
 }
 
 .tdBox {
-  border: solid 0.5rem rgba(230, 211, 70, 0.639);
+  border: solid 0.5rem rgba(97, 147, 47, 0.968);
   height: 100px;
   width: 100px;
   text-align: center;
-  background: rgb(14, 20, 90);
+  background: rgb(10, 14, 62);
   color: white;
 }
 
@@ -31,13 +32,15 @@ table {
   /* border: solid grey 2rem; */
 }
 
-.mainTitle {
+.header {
   text-align: center;
   font-size: 4rem;
+  color: white;
 }
 
-.sunny {
+.cartoon {
   height: 100px;
-}
-.dandy {
+  width: 115px;
+  margin: 1px;
+  margin-bottom: -2px;
 }

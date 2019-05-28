@@ -12,10 +12,13 @@ class Square extends Component {
   render() {
     let output = this.props.value
     if (this.props.value === 'F') {
-      output = <img src={require('../assets/sunny.jpg')} className="sunny" />
+      output = <img src={require('../assets/sunny1.jpeg')} className="cartoon" />
     }
     if (this.props.value === '*') {
-      output = <img src={require('../assets/dandy.jpg')} className="sunny" />
+      output = <img src={require('../assets/dandy.jpg')} className="cartoon" />
+    }
+    if (this.props.value === '@') {
+      output = <img src={require('../assets/bee.png')} className="cartoon" />
     }
     return (
       <td className="tdBox" onClick={this.revealBox} onContextMenu={this.flagBox}>
