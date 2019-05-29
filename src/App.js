@@ -1,10 +1,13 @@
 import React, { Component } from 'react'
 import Square from './components/Square'
 
+import grass from './assets/grass.png'
+
 class App extends Component {
   state = {
     board: [],
-    gameId: null
+    gameId: null,
+    status: []
   }
   componentDidMount() {
     const data = { number: 0 }
@@ -43,8 +46,15 @@ class App extends Component {
         return response.json()
       })
       .then(updatedBoard => {
+        let message = ''
+        if (updatedBoard.state === 'lost') {
+          message = 'Plants Lose'
+        } else if (updatedBoard.state === 'won') {
+          message = 'Plants Win'
+        }
         this.setState({
-          board: updatedBoard.board
+          board: updatedBoard.board,
+          message
         })
       })
   }
@@ -73,8 +83,21 @@ class App extends Component {
   render() {
     return (
       <main>
+        <section>
+          <p className="difficulty">Choose your difficulty:</p>
+          <select>
+            <option>Easy</option>
+            <option>Medium</option>
+            <option>Hard...That's what she said.</option>
+          </select>
+        </section>
+        <h1 className="message">{this.state.message}</h1>
         <h1 className="header">Plants vs. Weeds</h1>
-        <img src="../assets/grass.png" alt="green grass" />
+        <div className="grassy-grass">
+          <img src={grass} alt="green grass" className="green-grass" />
+          <img src={grass} alt="green grass" className="green-grass2" />
+          <img src={grass} alt="green grass" className="green-grass3" />
+        </div>
         <div>
           <table>
             <tbody>

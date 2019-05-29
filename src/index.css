@@ -17,6 +17,7 @@ body {
 
 table {
   border-collapse: collapse;
+  display: flex;
 }
 
 .tdBox {
@@ -26,18 +27,39 @@ table {
   text-align: center;
   background: rgb(10, 14, 62);
   color: white;
+  font-size: 2rem;
 }
-
-.box {
-  /* border: solid grey 2rem; */
+.difficulty {
+  color: white;
+  font-family: 'Shadows Into Light', cursive;
+  font-size: 1.5rem;
 }
-
+.message {
+  font-size: 4rem;
+  color: rgb(191, 6, 6);
+  display: flex;
+  justify-content: center;
+  font-family: 'Shadows Into Light', cursive;
+}
 .header {
   text-align: center;
-  font-size: 4rem;
-  color: white;
+  font-size: 4.5rem;
+  color: rgb(252, 183, 7);
+  font-family: 'Shadows Into Light', cursive;
 }
 
+.green-grass {
+  /* margin: -250px 200px 0 600px; */
+}
+.green-grass2 {
+  /* margin: -250px 200px 0 200px; */
+}
+.grassy-grass {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-top: -85px;
+}
 .cartoon {
   height: 100px;
   width: 115px;
